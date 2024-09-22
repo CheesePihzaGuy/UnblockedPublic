@@ -7,10 +7,22 @@
     <title>Unblocked V2</title>
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
+    <script>
+        function redirectToRandomSite() {
+            const urls = [
+                "https://www.youtube.com",
+                "https://www.discord.com",
+                "https://www.unblockedv2.vercel.app",
+                "https://www.google.com"
+            ];
+            const randomIndex = Math.floor(Math.random() * urls.length);
+            window.location.href = urls[randomIndex];
+        }
+    </script>
 </head>
 <body>
     <nav>
-        <img src="images/icon.png" alt="logo">
+        <img src="images/icon.png" alt="logo" onclick="redirectToRandomSite()" style="cursor: pointer;">
         <h1>Unblocked V2</h1>
     </nav>
 
@@ -44,7 +56,7 @@
             <div class="play-button">
                 <i class="fa-solid fa-play"></i>
             </div>
-            </a>
+          </a>
         </div>
         <div class="column">
           <a href="games/moto-x3m/">
@@ -59,7 +71,6 @@
                 <i class="fa-solid fa-play"></i>
             </div>
           </a>
-        </div>
         </div>
     </div>
 
@@ -91,8 +102,8 @@
         <a href="games/basketbrosio/"><img src="images/basketbros.png" alt="basketbros.io"></a>
         <a href="games/2048/"><img src="images/2048.png" alt="2048"></a>
         <a href="games/bitlife/"><img src="images/bitlife.png" alt="bitlife"></a>
-        <a href="games/worldshardestgame/"><img src="images/worldhardestgame.png" alt="worlds hardest game"></a>
-        <a href="games/worldshardestgame2/"><img src="images/worldshardestgame2.png" alt="worlds hardest game 2"></a>
+        <a href="games/worldshardestgame/"><img src="images/worldhardestgame.png" alt="world's hardest game"></a>
+        <a href="games/worldshardestgame2/"><img src="images/worldshardestgame2.png" alt="world's hardest game 2"></a>
         <a href="games/slope2/"><img src="images/slope21.png" alt="slope 2"></a>
         <a href="games/sm64/"><img src="images/sm64.png" alt="super mario 64"></a>
         <a href="games/stickman-hook/"><img src="images/stickmanhook.png" alt="stickman hook"></a>
@@ -125,7 +136,7 @@
     </div>
     <h2>Up To Date</h2>
     <h3>v2024.8</h3>
+
+    <script src="script.js"></script>
 </body>
 </html>
-
-<script src="script.js"></script>
