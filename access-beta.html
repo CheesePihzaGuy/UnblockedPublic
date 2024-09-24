@@ -49,17 +49,17 @@
         #url-input {
             padding: 10px;
             border: none;
-            border-radius: 25px; /* Make the input round /
+            border-radius: 25px;
             outline: none;
             transition: width 0.3s;
-            width: 200px; / Default width /
+            width: 200px;
             background-color: #ecf0f1;
             color: #2c3e50;
             font-size: 16px;
         }
 
         #url-input:focus {
-            width: 300px; / Expanded width /
+            width: 300px;
         }
 
         #url-input::placeholder {
@@ -73,7 +73,7 @@
         }
 
         .custom-checkbox {
-            display: none;  Hide default checkbox 
+            display: none;
         }
 
         .checkbox-label {
@@ -83,7 +83,8 @@
             font-size: 16px;
             color: white;
         }
-.checkbox-label:before {
+
+        .checkbox-label:before {
             content: '';
             position: absolute;
             left: 0;
@@ -104,9 +105,9 @@
 
         .iframe-container {
             margin-top: 20px;
-            display: none; / Initially hidden /
+            display: none;
             width: 80%;
-            height: 500px; / Set height for iframe /
+            height: 500px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
@@ -116,7 +117,7 @@
             width: 100%;
             height: 100%;
             border: none;
-        }
+}
     </style>
 </head>
 <body>
@@ -145,8 +146,8 @@
             if (url) {
                 const formattedUrl = url.startsWith('http://'/)  url.startsWith('https://'/) 
                     ? url 
-                    : 'http://' + url; // Default to http if no protocol
-                window.location.href = formattedUrl.includes('.') ? formattedUrl : 'http://' + formattedUrl; // Ensure URL includes a dot
+                    : 'http://' + url;
+                window.location.href = formattedUrl.includes('.') ? formattedUrl : 'http://' + formattedUrl;
             } else {
                 alert('Please enter a valid URL.');
             }
@@ -160,14 +161,12 @@
             if (checkbox.checked && urlInput) {
                 const formattedUrl = urlInput.startsWith('http://'/)  urlInput.startsWith('https://'/)
                     ? urlInput
-                    : 'http://' + urlInput; // Default to http if no protocol
-                document.getElementById('iframe').src = formattedUrl; // Set iframe src
-                iframeContainer.style.display =
-
-'block'; // Show iframe
+                    : 'http://' + urlInput;
+                document.getElementById('iframe').src = formattedUrl;
+                iframeContainer.style.display = 'block';
             } else {
-                iframeContainer.style.display = 'none'; // Hide iframe if not checked or no URL
-                document.getElementById('iframe').src = ''; // Clear iframe src
+                iframeContainer.style.display = 'none';
+                document.getElementById('iframe').src = '';
             }
         }
     </script>
