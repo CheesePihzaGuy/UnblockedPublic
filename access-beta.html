@@ -106,17 +106,59 @@
         .iframe-container {
             margin-top: 20px;
             display: none;
-            width: 60%;
-            height: 250px;
+            width: 80%;
+            height: 500px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
  
         iframe {
-            width: 50%;
-            height: 60%;
+            width: 100%;
+            height: 100%;
             border: none;
+        }
+ 
+        #beta-code-container, #nested-vtx-container {
+            margin-top: 10px;
+            display: none;
+        }
+ 
+        .beta-code-input {
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+            font-size: 16px;
+        }
+ 
+        #nested-vtx-checkbox-container {
+            margin-top: 10px;
+            display: none;
+        }
+ 
+        .dropdown-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+ 
+        select {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #34495e;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+        }
+ 
+        .bottom-info {
+            margin-top: 20px;
+            color: #bdc3c7;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -132,11 +174,34 @@
  
         <div class="checkbox-container">
             <input type="checkbox" id="vrt-checkbox" class="custom-checkbox" onclick="toggleIframe()">
-            <label for="vrt-checkbox" class="checkbox-label">VRT-x</label>
+            <label for="vrt-checkbox" class="checkbox-label">Virtual Access (VRT-x)</label>
+        </div>
+ 
+        <div id="beta-code-container">
+            <input type="text" id="beta-code" class="beta-code-input" placeholder="Beta Code">
+            <button onclick="checkBetaCode()">Enter</button>
+        </div>
+ 
+        <div id="nested-vtx-checkbox-container" class="checkbox-container">
+            <input type="checkbox" id="nested-vtx-checkbox" class="custom-checkbox" onclick="toggleNestedVTx()">
+            <label for="nested-vtx-checkbox" class="checkbox-label">Nested-VTx</label>
         </div>
  
         <div class="iframe-container" id="iframe-container">
             <iframe id="iframe" src="" title="Website Viewer"></iframe>
+            <div class="bottom-info">
+                <span id="version">V1.8.2</span> | <span id="memory-usage"></span>
+            </div>
+        </div>
+ 
+        <div class="dropdown-container">
+            <label for="resolution">Resolution:</label>
+            <select id="resolution" onchange="changeResolution()">
+                <option value="4096x2160">4096x2160</option>
+                <option value="2560x1440">2560x1440</option>
+                <option value="1920x1080" selected>1920x1080</option>
+                <option value="1280x720">1280x720</option>
+            </select>
         </div>
     </div>
  
@@ -171,15 +236,51 @@
             const urlInput = document.getElementById('url-input').value.trim();
  
             if (checkbox.checked && urlInput) {
-                const formattedUrl = (urlInput.startsWith('http://') || urlInput.startsWith('https://'))
-                    ? urlInput
-                    : 'http://' + urlInput;
-                document.getElementById('iframe').src = formattedUrl;
-                iframeContainer.style.display = 'block';
+                document.getElementById('beta-code-container').style.display = 'block';
             } else {
                 iframeContainer.style.display = 'none';
                 document.getElementById('iframe').src = '';
+                document.getElementById('beta-code-container').style.display = 'none';
+                document.getElementById('nested-vtx-checkbox-container').style.display = 'none';
             }
+        }
+ 
+        function checkBetaCode() {
+            const betaCode = document.getElementById('beta-code').value.trim();
+            if (betaCode === "19aQprT") {
+                document.getElementById('nested-vtx-checkbox-container').style.display = 'block';
+            } else {
+                alert('Invalid Beta Code');
+            }
+        }
+ 
+        function toggleNestedVTx() {
+            const nestedCheckbox = document.getElementById('nested-vtx-checkbox');
+            const iframeContainer = document.getElementById('iframe-container');
+            if (nestedCheckbox.checked) {
+                iframeContainer.style.width = '100vw';
+                iframeContainer.style.height = '100vh';
+            } else {
+                iframeContainer.style.width = '80%';
+                iframeContainer.style.height = '500px';
+            }
+        }
+ 
+        function changeResolution() {
+            const resolution = document.getElementById('resolution').value;
+            const iframe = document.getElementById('iframe');
+            iframe.style.width = resolution.split('x')[0] + 'px';
+            iframe.style.height = resolution.split('x')[1] + 'px';
+        }
+ 
+        window.onload = function() {
+            // Display a random 12-letter generated code
+            const randomCode = Math.random().toString(36).substring(2, 14).toUpperCase();
+            const bottomInfo = document.querySelector('.bottom-info');
+            bottomInfo.innerHTML = `${bottomInfo.innerHTML} | Beta Code: ${randomCode}`;
+ 
+            // Simulate memory usage (replace with actual values if needed)
+            document.getElementById('memory-usage').innerText = 'Google Memory: 200MB';
         }
     </script>
 </body>
