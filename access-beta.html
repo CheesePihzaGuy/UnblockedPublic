@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Access Beta</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts for Smoother Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Topbar with buttons -->
@@ -31,15 +33,22 @@
         <!-- Placeholder for additional content -->
     </div>
 
+    <!-- Version at the bottom -->
+    <footer>
+        <p class="version-text">v2024.9</p>
+    </footer>
+
     <!-- JavaScript for handling the search functionality -->
     <script>
         function accessWebsite(event) {
             event.preventDefault();
-            const url = document.getElementById('search-input').value;
-            if (url) {
-                const validUrl = url.startsWith('http') ? url : https://${url};
-                window.open(validUrl, '_blank');
+            let url = document.getElementById('search-input').value.trim();
+            
+            if (!url.includes("://")) {
+                url = 'https://' + url;
             }
+
+            window.open(url, '_blank');
         }
     </script>
 </body>
