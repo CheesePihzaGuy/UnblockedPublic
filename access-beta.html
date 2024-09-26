@@ -160,6 +160,54 @@
             color: #bdc3c7;
             font-size: 14px;
         }
+
+        .youtube-button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-botton: 50px;
+        }
+
+        .youtube-button {
+            background-color: #FF0000;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .youtube-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .youtube-button:hover {
+            background-color: #cc0000;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .youtube-button:hover::before {
+            opacity: 1;
+        }
+
+        .youtube-button:active {
+            transform: translateY(1px);
+        }
     </style>
 </head>
 <body>
@@ -283,5 +331,10 @@
             document.getElementById('memory-usage').innerText = 'Google Memory: 200MB';
         }
     </script>
+    <div> class="youtube-button-container">
+        <a href="https://youtu.be/P1jJywOXV5Y?si=0N5SyK70V_2c0UrO" class="youtube-button" target="_blank">
+            Click Here For YouTube
+        </a>
+    </div>
 </body>
 </html>
