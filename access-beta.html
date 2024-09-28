@@ -13,6 +13,7 @@
             color: #333;
             margin: 0;
             padding: 20px;
+            overflow: hidden; /* Prevent scrolling during loading */
         }
         .topbar {
             display: flex;
@@ -52,38 +53,101 @@
             width: 400px;
             outline: none;
         }
+        /* Popup Styles */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+        }
+        #popup-bg {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        #loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-
+ 
     <div class="topbar">
         <div>Access Beta</div>
         <div class="search-container">
             <input type="text" id="search-bar" class="search-bar" placeholder="Search or enter URL">
             <button id="go-button" class="button" onclick="accessWebsite()">Go</button>
+            <button class="button" onclick="refreshPage()">Refresh Site</button>
         </div>
         <div>
             <a href="index.html" class="button">Home</a>
-            <a href="https://youtube.com/" class="button">YouTube</a>
-            <button class="button" onclick="window.location.href='access-beta.html'">Refresh Site</button>
-            <button class="button" disabled>Beta</button>
+            <a href="https://youtu.be/P1jJywOXV5Y?si=0N5SyK70V_2c0UrO" class="button">YouTube</a>
+            <a href="access-beta.html" class="button">Refresh Site</a>
+            <button class="button" onclick="showBetaPopup()">Beta</button>
         </div>
     </div>
-
+ 
     <iframe id="website-frame" style="display: none; width: 100%; height: 600px; border: none; border-radius: 5px; margin-top: 20px;"></iframe>
-    
+ 
+    <div id="popup-bg"></div>
+    <div id="popup">
+        <h3>You cannot access this page.</h3>
+        <button class="button" onclick="closePopup()">OK</button>
+    </div>
+ 
+    <p id="loading" style="display: none;">Loading Assets...</p>
     <p style="text-align: center; margin-top: 20px;">v2024.9</p>
-
+ 
     <script>
         function accessWebsite() {
             let url = document.getElementById('search-bar').value;
+            // Auto-prepend HTTPS if needed
             if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                url = 'https://' + url; // Automatically prepend HTTPS
+                url = 'https://' + url; 
             }
-            document.getElementById('website-frame').src = url;
-            document.getElementById('website-frame').style.display = 'block'; // Show iframe
+            const iframe = document.getElementById('website-frame');
+            iframe.src = url;
+            iframe.style.display = 'block'; // Show iframe
         }
-
+ 
+        function refreshPage() {
+            location.reload();
+        }
+ 
+        function showBetaPopup() {
+            document.getElementById('popup-bg').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+ 
+        function closePopup() {
+            document.getElementById('popup-bg').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+ 
+            // Show loading screen
+            document.getElementById('loading').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('loading').textContent = "Loaded Assets";
+                setTimeout(() => {
+                    document.getElementById('loading').style.display = 'none';
+                }, 2000);
+            }, 7000);
+        }
+ 
         // Load user settings from Local Storage
         document.addEventListener('DOMContentLoaded', () => {
             const savedSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -92,6 +156,6 @@
             }
         });
     </script>
-
+ 
 </body>
 </html>
