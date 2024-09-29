@@ -71,13 +71,14 @@
             border-radius: 25px;
             background-color: #e0e0e0;
             font-size: 1rem;
-            transition: width 0.3s ease;
+            transition: all 0.3s ease;
         }
  
         .search-bar:focus {
             outline: none;
             background-color: #d0d0d0;
             width: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
  
         .search-container .go-button {
@@ -107,7 +108,7 @@
             z-index: 999;
         }
  
-        #popup {
+        #popup, #popup-xframe, #popup-insider, #popup-youtube {
             display: none;
             position: fixed;
             top: 50%;
@@ -120,20 +121,22 @@
             z-index: 1000;
             text-align: center;
             width: 300px;
+            transition: all 0.3s ease;
         }
  
-        #popup h3 {
+        #popup h3, #popup-xframe h3, #popup-insider h3, #popup-youtube h3 {
             margin: 0 0 20px;
             font-size: 1.3rem;
         }
  
-        #popup button {
+        #popup button, #popup-xframe button, #popup-insider button, #popup-youtube button {
             padding: 10px 20px;
             background-color: #007bff;
             border: none;
             color: white;
             border-radius: 8px;
             cursor: pointer;
+            margin-top: 15px;
         }
  
         /* Style for Refresh button */
@@ -158,6 +161,17 @@
             color: #888;
             font-size: 0.9rem;
         }
+ 
+        /* Additional styling for XFrame testing buttons */
+        #popup-insider button.no-btn {
+            background-color: #ff3b30;
+            margin-right: 10px;
+        }
+ 
+        #popup-insider .insider-msg {
+            margin-top: 20px;
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -165,8 +179,10 @@
     <!-- Topbar with buttons -->
     <div class="topbar">
         <a href="index.html" class="button">Home</a>
+        <button class="button" onclick="showYouTubePopup()">YouTube</button>
         <span class="title">Access Beta</span>
         <button class="button" disabled>Beta</button>
+        <button class="button" onclick="showXFramePopup()">XFrame Testing</button>
     </div>
  
     <!-- Search bar and button -->
@@ -180,6 +196,26 @@
     <div id="popup">
         <h3>You cannot access this page.</h3>
         <button onclick="closePopup()">OK</button>
+    </div>
+ 
+    <!-- YouTube Popup -->
+    <div id="popup-youtube">
+        <h3>This option is currently patched.</h3>
+        <button onclick="closeYouTubePopup()">OK</button>
+    </div>
+ 
+    <!-- XFrame Testing Popup -->
+    <div id="popup-xframe">
+        <h3>XFrame Testing is currently undergoing by developers.</h3>
+        <p>You can join by joining the Insider Program.</p>
+        <button class="no-btn" onclick="closeXFramePopup()">No</button>
+        <button onclick="joinInsiderProgram()">Join Insider Program</button>
+    </div>
+ 
+    <!-- Insider Program Full Message -->
+    <div id="popup-insider">
+        <h3>Maximum people have joined the Insider Program (32/32)</h3>
+        <button onclick="closeInsiderPopup()">OK</button>
     </div>
  
     <!-- Refresh Button -->
@@ -216,16 +252,40 @@
         function closePopup() {
             document.getElementById('popup-bg').style.display = 'none';
             document.getElementById('popup').style.display = 'none';
- 
-            // Fake loading screen after OK is clicked
-            setTimeout(() => {
-                alert("Loaded Assets");
-            }, 7000);
         }
  
-        // Beta button event listener to show the pop-up
-        document.querySelector('.button[disabled]').addEventListener('click', showBetaPopup);
-    </script>
+        // YouTube pop-up
+        function showYouTubePopup() {
+            document.getElementById('popup-bg').style.display = 'block';
+            document.getElementById('popup-youtube').style.display = 'block';
+        }
  
+        function closeYouTubePopup() {
+            document.getElementById('popup-bg').style.display = 'none';
+            document.getElementById('popup-youtube').style.display = 'none';
+        }
+ 
+        // XFrame Testing pop-up
+        function showXFramePopup() {
+            document.getElementById('popup-bg').style.display = 'block';
+            document.getElementById('popup-xframe').style.display = 'block';
+        }
+ 
+        function closeXFramePopup() {
+            document.getElementById('popup-bg').style.display = 'none';
+            document.getElementById('popup-xframe').style.display = 'none';
+        }
+ 
+        function joinInsiderProgram() {
+            document.getElementById('popup-xframe').style.display = 'none';
+            document.getElementById('popup-insider').style.display = 'block';
+        }
+ 
+        function closeInsiderPopup() {
+            document.getElementById('popup-bg').style.display = 'none';
+            document.getElementById('popup-insider').style.display = 'none';
+        }
+ 
+    </script>
 </body>
 </html>
