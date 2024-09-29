@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Access Beta</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -18,6 +17,7 @@
             align-items: center;
         }
  
+        /* Topbar */
         .topbar {
             display: flex;
             justify-content: space-between;
@@ -26,7 +26,6 @@
             background-color: #0056b3;
             padding: 15px 20px;
             border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             color: white;
         }
  
@@ -43,62 +42,34 @@
             border-radius: 8px;
             padding: 10px 20px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
             font-size: 1rem;
             margin-left: 15px;
         }
  
-        .topbar .button:disabled {
-            background-color: #666;
-            cursor: not-allowed;
-        }
- 
-        .topbar .button:hover:not(:disabled) {
+        .topbar .button:hover {
             background-color: #004a85;
         }
  
-        .search-container {
-            display: flex;
-            align-items: center;
-            width: 60%;
-            margin-top: 30px;
-        }
- 
-        .search-bar {
-            flex-grow: 1;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 25px;
-            background-color: #e0e0e0;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
- 
-        .search-bar:focus {
-            outline: none;
-            background-color: #d0d0d0;
-            width: 100%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
- 
-        .search-container .go-button {
-            margin-left: -50px;
-            background-color: #007bff;
+        .logout-btn {
+            background-color: #ff3b30;
             color: white;
-            padding: 12px 20px;
             border: none;
-            border-radius: 25px;
+            border-radius: 8px;
+            padding: 10px 20px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            margin-left: 15px;
         }
  
-        .search-container .go-button:hover {
-            background-color: #0056b3;
+        .logout-btn:hover {
+            background-color: #c1271b;
         }
  
-        /* Pop-up Styling */
-        #popup-bg {
+        /* Popup Style */
+        #popup-bg, #popup {
             display: none;
+        }
+ 
+        #popup-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -108,12 +79,11 @@
             z-index: 999;
         }
  
-        #popup, #popup-xframe, #popup-insider, #popup-youtube {
-            display: none;
+        #popup {
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) scale(0);
             background-color: white;
             border-radius: 15px;
             padding: 30px;
@@ -121,171 +91,172 @@
             z-index: 1000;
             text-align: center;
             width: 300px;
-            transition: all 0.3s ease;
+            transition: transform 0.4s ease;
         }
  
-        #popup h3, #popup-xframe h3, #popup-insider h3, #popup-youtube h3 {
-            margin: 0 0 20px;
-            font-size: 1.3rem;
+        #popup h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
  
-        #popup button, #popup-xframe button, #popup-insider button, #popup-youtube button {
+        #popup button {
             padding: 10px 20px;
-            background-color: #007bff;
-            border: none;
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
- 
-        /* Style for Refresh button */
-        .refresh-btn {
             background-color: #007bff;
             color: white;
             border: none;
             border-radius: 8px;
-            padding: 10px 20px;
             cursor: pointer;
-            margin-top: 20px;
+            font-size: 1rem;
         }
  
-        .refresh-btn:hover {
-            background-color: #0056b3;
+        #popup button:hover {
+            background-color: #004a85;
+        }
+ 
+        /* Search bar with Go button */
+        .search-bar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+        }
+ 
+        input[type="text"] {
+            width: 300px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px 0 0 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+ 
+        input[type="text"]:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+ 
+        .go-button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+ 
+        .go-button:hover {
+            background-color: #004a85;
+        }
+ 
+        /* MacOS-like Animation */
+        .macos-anim {
+            animation: popupAnim 0.4s forwards ease;
+        }
+ 
+        @keyframes popupAnim {
+            from {
+                transform: translate(-50%, -50%) scale(0);
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1);
+            }
         }
  
         /* Footer Version */
-        footer {
-            position: absolute;
-            bottom: 10px;
-            color: #888;
+        .footer-version {
+            margin-top: 40px;
             font-size: 0.9rem;
-        }
- 
-        /* Additional styling for XFrame testing buttons */
-        #popup-insider button.no-btn {
-            background-color: #ff3b30;
-            margin-right: 10px;
-        }
- 
-        #popup-insider .insider-msg {
-            margin-top: 20px;
-            color: red;
+            color: #999;
         }
     </style>
 </head>
 <body>
  
-    <!-- Topbar with buttons -->
+    <!-- Topbar -->
     <div class="topbar">
-        <a href="index.html" class="button">Home</a>
-        <button class="button" onclick="showYouTubePopup()">YouTube</button>
+        <a href="signup.html" class="button">Login</a>
         <span class="title">Access Beta</span>
-        <button class="button" disabled>Beta</button>
-        <button class="button" onclick="showXFramePopup()">XFrame Testing</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
  
-    <!-- Search bar and button -->
-    <div class="search-container">
-        <input type="text" id="search-bar" class="search-bar" placeholder="Enter URL">
-        <button class="go-button" onclick="accessWebsite()">Go</button>
+    <!-- Search Bar -->
+    <div class="search-bar-container">
+        <input type="text" id="url-input" placeholder="Enter URL">
+        <button class="go-button" onclick="openUrl()">Go</button>
     </div>
  
-    <!-- Popup for Beta Button -->
+    <!-- Popups for Beta and XFrame -->
     <div id="popup-bg"></div>
     <div id="popup">
-        <h3>You cannot access this page.</h3>
+        <h3 id="popup-message">You cannot access this page.</h3>
         <button onclick="closePopup()">OK</button>
     </div>
  
-    <!-- YouTube Popup -->
-    <div id="popup-youtube">
-        <h3>This option is currently patched.</h3>
-        <button onclick="closeYouTubePopup()">OK</button>
-    </div>
- 
-    <!-- XFrame Testing Popup -->
-    <div id="popup-xframe">
-        <h3>XFrame Testing is currently undergoing by developers.</h3>
-        <p>You can join by joining the Insider Program.</p>
-        <button class="no-btn" onclick="closeXFramePopup()">No</button>
-        <button onclick="joinInsiderProgram()">Join Insider Program</button>
-    </div>
- 
-    <!-- Insider Program Full Message -->
-    <div id="popup-insider">
-        <h3>Maximum people have joined the Insider Program (32/32)</h3>
-        <button onclick="closeInsiderPopup()">OK</button>
-    </div>
- 
-    <!-- Refresh Button -->
-    <button class="refresh-btn" onclick="refreshPage()">Refresh Site</button>
- 
-    <!-- Version -->
-    <footer>v2024.9</footer>
+    <!-- Footer Version -->
+    <div class="footer-version">v2024.9</div>
  
     <script>
-        // Access website function: opens in new tab
-        function accessWebsite() {
-            let url = document.getElementById('search-bar').value;
+        // Handle search bar and opening URL in new tab
+        function openUrl() {
+            const urlInput = document.getElementById('url-input').value;
+            let formattedUrl;
  
-            // Ensure the URL starts with https://
-            if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                url = 'https://' + url;
+            if (!urlInput.startsWith('https://')) {
+                formattedUrl = 'https://' + urlInput;
+            } else {
+                formattedUrl = urlInput;
             }
  
-            window.open(url, '_blank');
+            window.open(formattedUrl, '_blank');
         }
  
-        // Refresh the page function
-        function refreshPage() {
-            location.reload();
+        // Show popup when Beta is clicked
+        function showPopup(message) {
+            const popup = document.getElementById('popup');
+            const popupBg = document.getElementById('popup-bg');
+            const popupMessage = document.getElementById('popup-message');
+ 
+            popupMessage.textContent = message;
+            popup.classList.add('macos-anim');
+            popup.style.display = 'block';
+            popupBg.style.display = 'block';
         }
  
-        // Show Beta button pop-up
-        function showBetaPopup() {
-            document.getElementById('popup-bg').style.display = 'block';
-            document.getElementById('popup').style.display = 'block';
-        }
- 
-        // Close the pop-up
+        // Close popup
         function closePopup() {
-            document.getElementById('popup-bg').style.display = 'none';
-            document.getElementById('popup').style.display = 'none';
+            const popup = document.getElementById('popup');
+            const popupBg = document.getElementById('popup-bg');
+ 
+            popup.style.display = 'none';
+            popupBg.style.display = 'none';
         }
  
-        // YouTube pop-up
-        function showYouTubePopup() {
-            document.getElementById('popup-bg').style.display = 'block';
-            document.getElementById('popup-youtube').style.display = 'block';
+        // Logout functionality
+        function logout() {
+            localStorage.removeItem('loggedInUser');
+            window.location.href = 'signup.html';
         }
  
-        function closeYouTubePopup() {
-            document.getElementById('popup-bg').style.display = 'none';
-            document.getElementById('popup-youtube').style.display = 'none';
+        // Beta button (simulating popup and fake loading)
+        function showBetaPopup() {
+            showPopup('You cannot access this page.');
+ 
+            setTimeout(() => {
+                document.getElementById('popup-message').textContent = 'Loading assets...';
+                setTimeout(() => {
+                    closePopup();
+                }, 7000);
+            }, 1000);
         }
  
-        // XFrame Testing pop-up
-        function showXFramePopup() {
-            document.getElementById('popup-bg').style.display = 'block';
-            document.getElementById('popup-xframe').style.display = 'block';
-        }
- 
-        function closeXFramePopup() {
-            document.getElementById('popup-bg').style.display = 'none';
-            document.getElementById('popup-xframe').style.display = 'none';
-        }
- 
-        function joinInsiderProgram() {
-            document.getElementById('popup-xframe').style.display = 'none';
-            document.getElementById('popup-insider').style.display = 'block';
-        }
- 
-        function closeInsiderPopup() {
-            document.getElementById('popup-bg').style.display = 'none';
-            document.getElementById('popup-insider').style.display = 'none';
-        }
+        // Add event listeners for Beta button (add wherever necessary)
+        document.querySelector('.button-beta').addEventListener('click', showBetaPopup);
  
     </script>
+ 
 </body>
 </html>
