@@ -4,90 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Access Beta</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* General styles */
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f2f2f2;
             color: #333;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
  
-        /* Topbar */
+        /* Topbar (Browser bar like Chrome) */
         .topbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #0056b3;
-            color: white;
-            padding: 15px;
-            border-bottom: 1px solid #ccc;
+            background-color: #f8f9fa;
+            padding: 10px;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
         }
  
         .topbar input {
-            width: 400px;
+            width: 70%;
             padding: 10px;
-            border-radius: 8px;
-            border: none;
-            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 16px;
         }
  
         .topbar button {
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #4285f4;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
  
         .topbar button:hover {
-            background-color: #004a85;
+            background-color: #357ae8;
         }
  
-        /* Bookmarks Section */
-        .bookmarks {
-            padding: 20px;
-            background-color: #f4f4f4;
+        /* Google Chrome-like rounded tabs */
+        .tabs {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            gap: 10px;
+            margin-left: 20px;
         }
  
-        .bookmarks ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
+        .tab {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px 10px 0 0;
+            background-color: #eaeaea;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
         }
  
-        .bookmarks ul li {
-            margin-right: 10px;
+        .tab:hover {
+            background-color: #d0d0d0;
         }
  
-        .bookmarks ul li a {
-            text-decoration: none;
-            padding: 8px 12px;
-            background-color: #007bff;
-            color: white;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-        }
- 
-        .bookmarks ul li a:hover {
-            background-color: #0056b3;
-        }
- 
-        /* Animations for Light and Dark Mode */
+        /* Dark Mode Toggle */
         .toggle-dark-mode {
             padding: 10px 20px;
             cursor: pointer;
             background-color: #333;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 5px;
             transition: background-color 0.3s;
         }
  
@@ -95,116 +85,65 @@
             background-color: #111;
         }
  
-        /* Search Results */
+        /* Display area for search results */
         .search-results {
-            margin: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            padding: 20px;
         }
  
-        /* Dark Mode Styling */
+        /* Dark Mode Styles */
         body.dark {
             background-color: #333;
             color: white;
         }
  
         body.dark .topbar {
-            background-color: #222;
-        }
- 
-        body.dark .bookmarks {
             background-color: #444;
-        }
- 
-        body.dark .topbar button,
-        body.dark .toggle-dark-mode {
-            background-color: #888;
         }
  
         body.dark .topbar input {
             background-color: #555;
             color: white;
         }
+ 
+        body.dark .tab {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
-    <!-- Topbar -->
+    <!-- Browser-like top bar -->
     <div class="topbar">
-        <input type="text" id="url-input" placeholder="Enter URL or Search">
+        <div class="tabs">
+            <div class="tab">New Tab</div>
+        </div>
+        <input type="text" id="search-bar" placeholder="Search Google or type a URL">
         <button onclick="searchOrOpen()">Go</button>
         <button class="toggle-dark-mode" onclick="toggleDarkMode()">Dark Mode</button>
     </div>
  
-    <!-- Bookmarks -->
-    <div class="bookmarks">
-        <ul id="bookmarks-list">
-            <!-- Dynamic bookmarks will be added here -->
-        </ul>
-        <button onclick="addBookmark()">Add Bookmark</button>
-    </div>
- 
-    <!-- Search Results Section -->
-    <div class="search-results" id="search-results">
-        <!-- Dynamic search results or opened URLs will be displayed here -->
-    </div>
+    <!-- Search Results or Webpage Display Area -->
+    <div class="search-results" id="search-results"></div>
  
     <script>
-        // Local storage for bookmarks
-        const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
- 
-        function addBookmark() {
-            const url = document.getElementById('url-input').value;
-            if (url) {
-                bookmarks.push(url);
-                localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-                renderBookmarks();
-            }
-        }
- 
-        function renderBookmarks() {
-            const bookmarksList = document.getElementById('bookmarks-list');
-            bookmarksList.innerHTML = '';
-            bookmarks.forEach(bookmark => {
-                const li = document.createElement('li');
-                const a = document.createElement('a');
-                a.href = bookmark;
-                a.textContent = bookmark;
-                a.target = '_blank';
-                li.appendChild(a);
-                bookmarksList.appendChild(li);
-            });
-        }
- 
-        // Render bookmarks on page load
-        window.onload = renderBookmarks;
- 
-        // Toggle between light and dark modes
+        // Toggle Dark Mode
         function toggleDarkMode() {
             document.body.classList.toggle('dark');
         }
  
         // Search or open URL
         function searchOrOpen() {
-            const input = document.getElementById('url-input').value;
+            const searchInput = document.getElementById('search-bar').value;
             const searchResults = document.getElementById('search-results');
-            searchResults.innerHTML = ''; // Clear previous results
+            searchResults.innerHTML = '';  // Clear previous results
  
-            if (input.includes('.') && !input.includes(' ')) {
-                // Assume it's a URL and open in a new tab
-                let formattedUrl = input.startsWith('http') ? input : 'https://' + input;
+            // If input contains a URL-like structure, open in a new tab
+            if (searchInput.includes('.') && !searchInput.includes(' ')) {
+                let formattedUrl = searchInput.startsWith('http') ? searchInput : 'https://' + searchInput;
                 window.open(formattedUrl, '_blank');
             } else {
-                // Simulate a search result in the A3X search engine
-                const simulatedResults = `
-                    <p>Search results for "${input}" (Powered by A3X Engine):</p>
-                    <ul>
-                        <li><a href="#">Result 1: ${input} on A3X</a></li>
-                        <li><a href="#">Result 2: ${input} on A3X</a></li>
-                        <li><a href="#">Result 3: ${input} on A3X</a></li>
-                    </ul>
-                `;
-                searchResults.innerHTML = simulatedResults;
+                // Simulate a Google search (Redirect to a real Google search)
+                let searchQuery = `https://www.google.com/search?q=${encodeURIComponent(searchInput)}`;
+                window.open(searchQuery, '_blank');
             }
         }
     </script>
