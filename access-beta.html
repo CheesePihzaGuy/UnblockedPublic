@@ -4,148 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Access Beta</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        /* General styles */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
-            color: #333;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
- 
-        /* Topbar (Browser bar like Chrome) */
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #f8f9fa;
-            padding: 10px;
-            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
-        }
- 
-        .topbar input {
-            width: 70%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            outline: none;
-            font-size: 16px;
-        }
- 
-        .topbar button {
-            padding: 10px 20px;
-            background-color: #4285f4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
- 
-        .topbar button:hover {
-            background-color: #357ae8;
-        }
- 
-        /* Google Chrome-like rounded tabs */
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-left: 20px;
-        }
- 
-        .tab {
-            padding: 10px 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px 10px 0 0;
-            background-color: #eaeaea;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-        }
- 
-        .tab:hover {
-            background-color: #d0d0d0;
-        }
- 
-        /* Dark Mode Toggle */
-        .toggle-dark-mode {
-            padding: 10px 20px;
-            cursor: pointer;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
- 
-        .toggle-dark-mode:hover {
-            background-color: #111;
-        }
- 
-        /* Display area for search results */
-        .search-results {
-            padding: 20px;
-        }
- 
-        /* Dark Mode Styles */
-        body.dark {
-            background-color: #333;
-            color: white;
-        }
- 
-        body.dark .topbar {
-            background-color: #444;
-        }
- 
-        body.dark .topbar input {
-            background-color: #555;
-            color: white;
-        }
- 
-        body.dark .tab {
-            background-color: #555;
-        }
-    </style>
+    <link rel="stylesheet" href="axStyles.css">
+    <script src="A3X.js" defer></script>
 </head>
 <body>
-    <!-- Browser-like top bar -->
+ 
     <div class="topbar">
-        <div class="tabs">
-            <div class="tab">New Tab</div>
+        <button id="home-button">Home</button>
+        <button id="general-button">General</button>
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search or enter a URL">
+            <button id="search-button">Go</button>
         </div>
-        <input type="text" id="search-bar" placeholder="Search Google or type a URL">
-        <button onclick="searchOrOpen()">Go</button>
-        <button class="toggle-dark-mode" onclick="toggleDarkMode()">Dark Mode</button>
     </div>
  
-    <!-- Search Results or Webpage Display Area -->
-    <div class="search-results" id="search-results"></div>
+    <div id="main-content">
+        <!-- Content will be dynamically replaced based on actions -->
+    </div>
  
-    <script>
-        // Toggle Dark Mode
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark');
-        }
- 
-        // Search or open URL
-        function searchOrOpen() {
-            const searchInput = document.getElementById('search-bar').value;
-            const searchResults = document.getElementById('search-results');
-            searchResults.innerHTML = '';  // Clear previous results
- 
-            // If input contains a URL-like structure, open in a new tab
-            if (searchInput.includes('.') && !searchInput.includes(' ')) {
-                let formattedUrl = searchInput.startsWith('http') ? searchInput : 'https://' + searchInput;
-                window.open(formattedUrl, '_blank');
-            } else {
-                // Simulate a Google search (Redirect to a real Google search)
-                let searchQuery = `https://www.google.com/search?q=${encodeURIComponent(searchInput)}`;
-                window.open(searchQuery, '_blank');
-            }
-        }
-    </script>
+    <footer>
+        <p>v2024.9f</p>
+    </footer>
 </body>
 </html>
