@@ -3,28 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A3X Browser</title>
-    <link rel="stylesheet" href="axStyles.css">
-    <script src="A3X.js" defer></script>
+    <title>Access Beta</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
- 
     <div class="topbar">
         <button id="home-button">Home</button>
-        <button id="general-button">General</button>
-        <button id="darkmode-toggle">Dark Mode</button>
         <div class="search-container">
             <input type="text" id="search-bar" placeholder="Search or enter a URL">
             <button id="search-button">Go</button>
         </div>
+        <button id="general-button">General</button>
+        <button id="darkmode-toggle">Toggle Dark Mode</button>
     </div>
- 
-    <div id="main-content">
-        <!-- Content will be dynamically replaced based on actions -->
-    </div>
- 
-    <footer>
-        <p>v2024.9f</p>
-    </footer>
+
+    <div id="main-content"></div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
