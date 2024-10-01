@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openGeneralMenu() {
         mainContent.innerHTML = `
-            <div class="popup general-popup">
+            <div class="popup general-popup active">
                 <div class="exit-button" id="exit-button">x</div>
                 <button id="about-button">About</button>
                 <button id="software-button">Software Update</button>
