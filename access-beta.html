@@ -5,21 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Access Beta</title>
     <link rel="stylesheet" href="axStyles.css">
+    <script src="A3X.js" defer></script>
 </head>
 <body>
-    <div class="topbar">
-        <button id="home-button">Home</button>
-        <div class="search-container">
-            <input type="text" id="search-bar" placeholder="Search or enter a URL">
-            <button id="search-button">Go</button>
+    <header>
+        <div class="topbar">
+            <button id="homeBtn">Home</button>
+            <button id="generalBtn">General</button>
+            <button id="bookmarksBtn">Bookmarks</button>
+            <input type="text" id="searchBar" placeholder="Search or enter URL..." />
+            <button id="goBtn">Go</button>
         </div>
-        <button id="general-button">General</button>
-        <button id="darkmode-toggle">Toggle Dark Mode</button>
+    </header>
+
+    <main id="mainContent">
+        <h1>Welcome to Access</h1>
+        <div id="resultsContainer"></div>
+    </main>
+
+    <div id="generalMenu" class="modal hidden">
+        <div class="modal-content">
+            <span class="closeBtn" id="closeGeneralMenu">&times;</span>
+            <h2>General Menu</h2>
+            <button id="aboutBtn">About</button>
+            <button id="softwareUpdateBtn">Software Update</button>
+            <button id="developerBtn">Developer</button>
+            <button id="exitGeneralBtn" class="exitBtn">Exit</button>
+        </div>
     </div>
 
-    <div id="main-content"></div>
+    <div id="aboutModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="closeBtn" id="closeAboutModal">&times;</span>
+            <h2>About</h2>
+            <table>
+                <tr>
+                    <td>Engine Version</td>
+                    <td>A3X</td>
+                </tr>
+                <tr>
+                    <td>Trust Mobile Version</td>
+                    <td>1.0</td>
+                </tr>
+                <tr>
+                    <td>Trust Computer Version</td>
+                    <td>1.0</td>
+                </tr>
+                <tr>
+                    <td>NodeJS Version</td>
+                    <td>14.x</td>
+                </tr>
+                <tr>
+                    <td>HTML Version</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Main Version</td>
+                    <td>1.0</td>
+                </tr>
+            </table>
+            <button id="backFromAboutBtn">Back</button>
+        </div>
+    </div>
 
-    <!-- JavaScript -->
-    <script src="A3X.js"></script>
+    <div id="softwareUpdateModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="closeBtn" id="closeSoftwareUpdateModal">&times;</span>
+            <h2>Software Update</h2>
+            <p>A3X</p>
+            <p class="small-text">You are up to date</p>
+            <button id="backFromSoftwareUpdateBtn">Back</button>
+        </div>
+    </div>
+
+    <div id="developerModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="closeBtn" id="closeDeveloperModal">&times;</span>
+            <h2>Developer</h2>
+            <p>You are not a developer nor eligible to become one. Insider Program will open soon.</p>
+            <button id="backFromDeveloperBtn">Back</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>v2024.9</p>
+    </footer>
 </body>
 </html>
