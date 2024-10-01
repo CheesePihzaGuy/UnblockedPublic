@@ -1,152 +1,133 @@
-/* General Styling */
+/* General Reset and Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
     margin: 0;
     padding: 0;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: white;
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
 }
- 
+
 .dark-mode {
-    background-color: #333;
-    color: #f0f0f0;
+    background-color: #2b2b2b;
+    color: white;
 }
- 
+
 .topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #3b5998;
     padding: 10px;
-    background-color: #e5e5e5;
-    border-bottom: 2px solid #ccc;
-    transition: background-color 0.3s ease;
-}
- 
-.dark-mode .topbar {
-    background-color: #444;
-}
- 
-button {
-    background-color: #d3d3d3;
-    border: none;
-    padding: 10px 15px;
-    margin: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
- 
-button:hover {
-    background-color: #bbb;
-    transform: scale(1.05);
-}
- 
-.dark-mode button {
-    background-color: #666;
     color: white;
 }
- 
+
+.topbar button {
+    background-color: #ffffff;
+    border: none;
+    color: #3b5998;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.topbar button:hover {
+    background-color: #f0f0f0;
+}
+
 .search-container {
     display: flex;
-    flex-grow: 1;
-    justify-content: center;
-    position: relative;
+    align-items: center;
 }
- 
-#search-bar {
-    width: 60%;
-    padding: 10px;
-    border-radius: 15px 0 0 15px;
+
+.search-container input {
+    padding: 8px;
     border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
     outline: none;
-    transition: border-color 0.3s ease;
+    flex: 1;
 }
- 
-#search-bar.error {
-    border-color: red;
+
+.search-container button {
+    padding: 9px 15px;
+    border-radius: 0 5px 5px 0;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
 }
- 
-#search-bar::placeholder {
-    color: red;
+
+.search-container button:hover {
+    background-color: #45a049;
 }
- 
-#search-button {
-    padding: 10px 15px;
-    background-color: #d3d3d3;
-    border: 1px solid #ccc;
-    border-radius: 0 15px 15px 0;
-    cursor: pointer;
-}
- 
+
 #main-content {
     padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 60vh;
 }
- 
-/* Popup styles */
+
+.error {
+    border: 1px solid red;
+}
+
+/* Popup */
 .popup {
-    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 400px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 300px;
+    z-index: 1000;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
- 
+
 .popup.active {
-    display: block;
-    animation: popup-animation 0.5s ease;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
- 
-@keyframes popup-animation {
-    from {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
- 
-.back-button {
-    margin-top: 15px;
-    display: block;
-    text-align: center;
-    padding: 10px;
-    background-color: #d3d3d3;
-    border: none;
-    cursor: pointer;
-}
- 
-/* Exit Button */
-.exit-button {
+
+.popup .exit-button {
     position: absolute;
-    top: -10px;
-    right: -10px;
-    background-color: red;
-    border-radius: 50%;
+    top: 10px;
+    right: 10px;
+    background-color: #f44336;
+    border: none;
     color: white;
-    width: 25px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 5px 10px;
     cursor: pointer;
+    border-radius: 50%;
 }
- 
-/* Footer */
-footer {
-    text-align: center;
+
+.popup button {
     padding: 10px;
-    background-color: #e5e5e5;
+    margin: 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.popup button:hover {
+    background-color: #45a049;
+}
+
+.table-container {
+    text-align: left;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+}
+
+table tr td:first-child {
+    text-align: right;
+    padding-right: 10px;
 }
