@@ -1,105 +1,56 @@
-// A3X Engine -- 2024
-document.addEventListener('DOMContentLoaded', () => {
-    // Main UI elements
-    const searchBar = document.getElementById('searchBar');
-    const goBtn = document.getElementById('goBtn');
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.getElementById('body');
+// DOM Elements
+const generalBtn = document.getElementById('generalBtn');
+const generalMenu = document.getElementById('generalMenu');
+const closeBtn = document.querySelector('.close-btn');
+const exitBtn = document.querySelector('.exit-btn');
+const aboutBtn = document.getElementById('aboutBtn');
+const softwareBtn = document.getElementById('softwareBtn');
+const devBtn = document.getElementById('devBtn');
+const aboutContent = document.getElementById('aboutContent');
+const softwareContent = document.getElementById('softwareContent');
+const developerContent = document.getElementById('developerContent');
+const backBtns = document.querySelectorAll('.back-btn');
+const homeBtn = document.getElementById('homeBtn');
 
-    // General Menu elements
-    const generalBtn = document.getElementById('generalBtn');
-    const generalMenu = document.getElementById('generalMenu');
-    const closeGeneralMenu = document.getElementById('closeGeneralMenu');
+// Event Listeners
+generalBtn.addEventListener('click', () => {
+    generalMenu.classList.remove('hidden');
+});
 
-    // Modals
-    const aboutBtn = document.getElementById('aboutBtn');
-    const aboutModal = document.getElementById('aboutModal');
-    const closeAboutModal = document.getElementById('closeAboutModal');
-    const softwareUpdateBtn = document.getElementById('softwareUpdateBtn');
-    const softwareUpdateModal = document.getElementById('softwareUpdateModal');
-    const closeSoftwareUpdateModal = document.getElementById('closeSoftwareUpdateModal');
-    const developerBtn = document.getElementById('developerBtn');
-    const developerModal = document.getElementById('developerModal');
-    const closeDeveloperModal = document.getElementById('closeDeveloperModal');
-    const exitGeneralBtn = document.getElementById('exitGeneralBtn');
+closeBtn.addEventListener('click', () => {
+    generalMenu.classList.add('hidden');
+});
 
-    // Dark Mode toggle
-    darkModeToggle.onclick = () => {
-        if (body.classList.contains('dark-mode')) {
-            body.classList.remove('dark-mode');
-            darkModeToggle.textContent = 'Dark Mode';
-        } else {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = 'Light Mode';
-        }
-    };
+exitBtn.addEventListener('click', () => {
+    generalMenu.classList.add('hidden');
+});
 
-    // Show General Menu
-    generalBtn.onclick = () => {
+aboutBtn.addEventListener('click', () => {
+    generalMenu.classList.add('hidden');
+    aboutContent.classList.remove('hidden');
+});
+
+softwareBtn.addEventListener('click', () => {
+    generalMenu.classList.add('hidden');
+    softwareContent.classList.remove('hidden');
+});
+
+devBtn.addEventListener('click', () => {
+    generalMenu.classList.add('hidden');
+    developerContent.classList.remove('hidden');
+});
+
+// Back button functionality for popups
+backBtns.forEach(backBtn => {
+    backBtn.addEventListener('click', () => {
+        aboutContent.classList.add('hidden');
+        softwareContent.classList.add('hidden');
+        developerContent.classList.add('hidden');
         generalMenu.classList.remove('hidden');
-    };
-
-    // Close General Menu
-    closeGeneralMenu.onclick = () => {
-        generalMenu.classList.add('hidden');
-    };
-
-    // About Button & Modal
-    aboutBtn.onclick = () => {
-        generalMenu.classList.add('hidden');
-        aboutModal.classList.remove('hidden');
-    };
-    closeAboutModal.onclick = () => {
-        aboutModal.classList.add('hidden');
-        generalMenu.classList.remove('hidden');
-    };
-
-    // Software Update Button & Modal
-    softwareUpdateBtn.onclick = () => {
-        generalMenu.classList.add('hidden');
-        softwareUpdateModal.classList.remove('hidden');
-    };
-    closeSoftwareUpdateModal.onclick = () => {
-        softwareUpdateModal.classList.add('hidden');
-        generalMenu.classList.remove('hidden');
-    };
-
-    // Developer Button & Modal
-    developerBtn.onclick = () => {
-        generalMenu.classList.add('hidden');
-        developerModal.classList.remove('hidden');
-    };
-    closeDeveloperModal.onclick = () => {
-        developerModal.classList.add('hidden');
-        generalMenu.classList.remove('hidden');
-    };
-
-    // Exit General Menu
-    exitGeneralBtn.onclick = () => {
-        generalMenu.classList.add('hidden');
-    };
-
-    // Handle Search with Go button or Enter key
-    function handleSearch() {
-        const query = searchBar.value.trim();
-        if (!query) {
-            searchBar.value = 'You must enter a search query or URL';
-            searchBar.style.color = 'red';
-            setTimeout(() => {
-                searchBar.value = '';
-                searchBar.style.color = '';
-            }, 4000);
-            return;
-        }
-
-        const url = query.includes('http://') || query.includes('https://') ? query : `https://${query}`;
-        window.open(url, '_blank');
-    }
-
-    goBtn.onclick = handleSearch;
-    searchBar.addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-            handleSearch();
-        }
     });
+});
+
+// Home button functionality
+homeBtn.addEventListener('click', () => {
+    window.location.href = 'https://unblockedv2.vercel.app/';
 });
