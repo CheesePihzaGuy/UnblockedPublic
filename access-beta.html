@@ -7,26 +7,27 @@
     <link rel="stylesheet" href="axStyles.css">
     <script src="A3X.js" defer></script>
 </head>
-<body>
+<body id="body">
     <header>
         <div class="topbar">
             <button id="homeBtn">Home</button>
             <button id="generalBtn">General</button>
             <button id="bookmarksBtn">Bookmarks</button>
-            <input type="text" id="searchBar" placeholder="Search or enter URL..." />
-            <button id="goBtn">Go</button>
+            <input type="text" id="searchBar" placeholder="Search or enter URL...">
+            <button id="goBtn" class="combined">Go</button>
+            <button id="darkModeToggle">Dark Mode</button>
         </div>
     </header>
 
     <main id="mainContent">
-        <h1>Welcome to Access</h1>
+        <h1>Welcome to Access Beta</h1>
         <div id="resultsContainer"></div>
     </main>
 
     <div id="generalMenu" class="modal hidden">
         <div class="modal-content">
-            <span class="closeBtn" id="closeGeneralMenu">&times;</span>
-            <h2>General Menu</h2>
+            <button class="closeBtn" id="closeGeneralMenu">&times;</button>
+            <h2>General</h2>
             <button id="aboutBtn">About</button>
             <button id="softwareUpdateBtn">Software Update</button>
             <button id="developerBtn">Developer</button>
@@ -36,33 +37,15 @@
 
     <div id="aboutModal" class="modal hidden">
         <div class="modal-content">
-            <span class="closeBtn" id="closeAboutModal">&times;</span>
-            <h2>About</h2>
+            <button class="closeBtn" id="closeAboutModal">&times;</button>
+            <h2>About A3X</h2>
             <table>
-                <tr>
-                    <td>Engine Version</td>
-                    <td>A3X</td>
-                </tr>
-                <tr>
-                    <td>Trust Mobile Version</td>
-                    <td>1.0</td>
-                </tr>
-                <tr>
-                    <td>Trust Computer Version</td>
-                    <td>1.0</td>
-                </tr>
-                <tr>
-                    <td>NodeJS Version</td>
-                    <td>14.x</td>
-                </tr>
-                <tr>
-                    <td>HTML Version</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>Main Version</td>
-                    <td>1.0</td>
-                </tr>
+                <tr><td>Engine Version</td><td>A3X</td></tr>
+                <tr><td>Trust Mobile Version</td><td>1.482</td></tr>
+                <tr><td>Trust Computer Version</td><td>1.491</td></tr>
+                <tr><td>NodeJS Version</td><td>8.0</td></tr>
+                <tr><td>HTML Version</td><td>5</td></tr>
+                <tr><td>Main Version</td><td>2024.9f</td></tr>
             </table>
             <button id="backFromAboutBtn">Back</button>
         </div>
@@ -70,17 +53,17 @@
 
     <div id="softwareUpdateModal" class="modal hidden">
         <div class="modal-content">
-            <span class="closeBtn" id="closeSoftwareUpdateModal">&times;</span>
+            <button class="closeBtn" id="closeSoftwareUpdateModal">&times;</button>
             <h2>Software Update</h2>
             <p>A3X</p>
-            <p class="small-text">You are up to date</p>
+            <p class="small-text">Software is up to date.</p>
             <button id="backFromSoftwareUpdateBtn">Back</button>
         </div>
     </div>
 
     <div id="developerModal" class="modal hidden">
         <div class="modal-content">
-            <span class="closeBtn" id="closeDeveloperModal">&times;</span>
+            <button class="closeBtn" id="closeDeveloperModal">&times;</button>
             <h2>Developer</h2>
             <p>You are not a developer nor eligible to become one. Insider Program will open soon.</p>
             <button id="backFromDeveloperBtn">Back</button>
@@ -88,7 +71,7 @@
     </div>
 
     <footer>
-        <p>v2024.9</p>
+        <p>v2024.9f</p>
     </footer>
 </body>
 </html>
