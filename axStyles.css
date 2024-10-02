@@ -84,6 +84,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: opacity 0.3s ease;
 }
 
 .general-menu-content {
@@ -92,6 +93,7 @@ body {
     border-radius: 10px;
     width: 300px;
     text-align: center;
+    position: relative;
 }
 
 .close-btn {
@@ -106,6 +108,16 @@ body {
     cursor: pointer;
 }
 
+.exit-btn {
+    background-color: red;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100px;
+}
+
 .popup {
     background-color: #fff;
     padding: 20px;
@@ -113,6 +125,7 @@ body {
     width: 300px;
     text-align: center;
     margin: auto;
+    transition: opacity 0.3s ease;
 }
 
 .back-btn {
