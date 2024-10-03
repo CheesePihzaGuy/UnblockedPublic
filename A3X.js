@@ -12,6 +12,11 @@ const developerContent = document.getElementById('developerContent');
 const backBtns = document.querySelectorAll('.back-btn');
 const homeBtn = document.getElementById('homeBtn');
 
+// Ensure General Menu is hidden by default
+window.addEventListener('DOMContentLoaded', () => {
+    generalMenu.classList.add('hidden');
+});
+
 // Event Listeners
 generalBtn.addEventListener('click', () => {
     generalMenu.classList.remove('hidden');
@@ -52,5 +57,5 @@ backBtns.forEach(backBtn => {
 
 // Home button functionality
 homeBtn.addEventListener('click', () => {
-    window.location.href = 'https://unblockedv2.vercel.app/';
+    window.location.href = 'index.html';
 });
