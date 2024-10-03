@@ -8,81 +8,36 @@
 </head>
 <body>
 
-    <!-- Topbar -->
+    <!-- Search bar with the Go button combined -->
     <div class="topbar">
-        <div class="logo">Access Beta</div>
-        <div class="menu">
-            <button id="homeBtn">Home</button>
-            <button id="generalBtn">General</button>
-        </div>
+        <input type="text" id="searchBar" placeholder="Search or enter URL" class="search-bar">
+        <button id="goBtn" class="go-button">Go</button>
     </div>
 
-    <!-- Search Section -->
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search or enter URL">
-        <button id="searchBtn">Go</button>
-    </div>
-
-    <!-- Main Content -->
-    <div class="content">
-        <p id="errorMsg" class="hidden">You must enter a search query or URL</p>
+    <!-- Home and General buttons -->
+    <div class="menu-buttons">
+        <button id="homeBtn" class="menu-btn">Home</button>
+        <button id="openGeneralMenu" class="menu-btn">General</button>
     </div>
 
     <!-- General Menu (hidden by default) -->
-    <div id="generalMenu" class="general-menu hidden">
-        <div class="general-menu-content">
-            <button class="close-btn">X</button>
-            <div class="general-buttons">
-                <button id="aboutBtn">About</button>
-                <button id="softwareBtn">Software Update</button>
-                <button id="devBtn">Developer</button>
+    <div id="generalMenu" class="menu hidden">
+        <button id="aboutBtn" class="menu-btn">About</button>
+        <button id="softwareBtn" class="menu-btn">Software Update</button>
+        <button id="developerBtn" class="menu-btn">Developer</button>
+        <button id="exitButton" class="exit-button">Exit</button>
+    </div>
+
+    <!-- Popup (for About, Software Update, Developer info) -->
+    <div id="popup" class="popup hidden">
+        <div class="popup-box">
+            <span id="closePopup" class="close">&times;</span>
+            <div id="popupContent">
+                <!-- Content will be injected here by JavaScript -->
             </div>
-            <button class="exit-btn">Exit</button>
         </div>
     </div>
 
-    <!-- About Content (initially hidden) -->
-    <div id="aboutContent" class="popup hidden">
-        <h2>About</h2>
-        <table>
-            <tr>
-                <td>Engine Version:</td><td>A3X</td>
-            </tr>
-            <tr>
-                <td>Trust Mobile Version:</td><td>16</td>
-            </tr>
-            <tr>
-                <td>Trust Computer Version:</td><td>22</td>
-            </tr>
-            <tr>
-                <td>NodeJS Version:</td><td>8.0</td>
-            </tr>
-            <tr>
-                <td>HTML Version:</td><td>5.0</td>
-            </tr>
-            <tr>
-                <td>Proxy:</td><td>Unreleased</td>
-            </tr>
-        </table>
-        <button class="back-btn">Back</button>
-    </div>
-
-    <!-- Software Update Popup (initially hidden) -->
-    <div id="softwareContent" class="popup hidden">
-        <h2>Software Update</h2>
-        <h4>A3X</h4>
-        <p>You are up to date</p>
-        <button class="back-btn">Back</button>
-    </div>
-
-    <!-- Developer Popup (initially hidden) -->
-    <div id="developerContent" class="popup hidden">
-        <h2>Developer</h2>
-        <p>You are not a developer nor eligible to become one. Insider Program will open soon.</p>
-        <button class="back-btn">Back</button>
-    </div>
-
-    <!-- Scripts -->
     <script src="A3X.js"></script>
 </body>
 </html>
