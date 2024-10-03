@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A4X Engine</title>
+  <h1>// A4X Engine -- 2025.x</h1>
+  <h4>This code is specifically for testing purposes.</h4>
+  <p>Warning: NodeJS is not updated to 8.1, so this script may have incorrect syntax.</p>
+  <p>Warning: NodeJS is not updated to 9.x, so this script may have incorrect syntax.</p>
+  <h7>// DOM Elements
+const generalBtn = document.getElementById('generalBtn');
+const generalMenu = document.getElementById('generalMenu');
+const closeBtn = document.querySelector('.close-btn');
+const exitBtn = document.querySelector('.exit-btn');
+const aboutBtn = document.getElementById('aboutBtn');
+const softwareBtn = document.getElementById('softwareBtn');
+const devBtn = document.getElementById('devBtn');
+const aboutContent = document.getElementById('aboutContent');
+const softwareContent = document.getElementById('softwareContent');
+const developerContent = document.getElementById('developerContent');
+const backBtns = document.querySelectorAll('.back-btn');
+const homeBtn = document.getElementById('homeBtn');
+
+// Event Listeners
+generalBtn.addEventListener('click', () => {
+    generalMenu.classList.remove('hidden');
+});
+
+closeBtn.addEventListener('click', () => {
+    generalMenu.classList.add('hidden');
+});
+
+exitBtn.addEventListener('click', () => {
+    generalMenu.classList.add('hidden');
+});
+
+aboutBtn.addEventListener('click', () => {
+    generalMenu.classList.add('hidden');
+    aboutContent.classList.remove('hidden');
+});
+
+softwareBtn.addEventListener('click', () => {
+    generalMenu.classList.add('hidden');
+    softwareContent.classList.remove('hidden');
+});
+
+devBtn.addEventListener('click', () => {
+    generalMenu.classList.add('hidden');
+    developerContent.classList.remove('hidden');
+});
+
+// Back button functionality for popups
+backBtns.forEach(backBtn => {
+    backBtn.addEventListener('click', () => {
+        aboutContent.classList.add('hidden');
+        softwareContent.classList.add('hidden');
+        developerContent.classList.add('hidden');
+        generalMenu.classList.remove('hidden');
+    });
+});
+
+// Home button functionality
+homeBtn.addEventListener('click', () => {
+    window.location.href = 'https://unblockedv2.vercel.app/';
+});</h7>
+</head>
