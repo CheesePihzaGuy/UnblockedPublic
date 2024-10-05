@@ -12,9 +12,9 @@
             justify-content: center;
             align-items: center;
             font-family: Arial, sans-serif;
-            background: linear-gradient(270deg, purple, lightblue);
+            background: linear-gradient(270deg, #6495ED, lightblue);
             background-size: 400% 400%;
-            animation: gradientShift 10s ease infinite;
+            animation: gradientShift 20s ease infinite; /* Slowed down gradient */
             position: relative;
             overflow: hidden;
         }
@@ -27,18 +27,18 @@
 
         h1 {
             font-size: 5rem;
-            color: blue;
+            color: lightblue;
             text-align: center;
-            text-shadow: 0 0 10px rgba(0, 0, 255, 0.7), 0 0 20px rgba(0, 0, 255, 0.5);
+            text-shadow: 0 0 10px rgba(173, 216, 230, 0.7), 0 0 20px rgba(173, 216, 230, 0.5);
             animation: glow 1.5s ease-in-out infinite alternate;
         }
 
         @keyframes glow {
             from {
-                text-shadow: 0 0 10px rgba(0, 0, 255, 0.7), 0 0 20px rgba(0, 0, 255, 0.5);
+                text-shadow: 0 0 10px rgba(173, 216, 230, 0.7), 0 0 20px rgba(173, 216, 230, 0.5);
             }
             to {
-                text-shadow: 0 0 20px rgba(0, 0, 255, 1), 0 0 30px rgba(0, 0, 255, 0.8);
+                text-shadow: 0 0 20px rgba(173, 216, 230, 1), 0 0 30px rgba(173, 216, 230, 0.8);
             }
         }
 
@@ -74,7 +74,7 @@
         .click-circle {
             position: absolute;
             border-radius: 50%;
-            background: rgba(0, 0, 255, 0.6);
+            background: rgba(0, 128, 255, 0.6);
             pointer-events: none;
             animation: expandFade 1s forwards;
         }
@@ -104,6 +104,7 @@
     <div class="content">
         <h1>Unblocked V2</h1>
         <small>v2025.x</small>
+        <small>Coming 2025</small>
     </div>
 
     <script>
@@ -112,6 +113,7 @@
             circle.classList.add('click-circle');
             document.body.appendChild(circle);
 
+            // Adjust position to center the circle on the cursor
             circle.style.left = `${e.pageX - 75}px`;
             circle.style.top = `${e.pageY - 75}px`;
 
