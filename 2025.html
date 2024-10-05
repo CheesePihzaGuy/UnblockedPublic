@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unblocked V2</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(270deg, purple, lightblue);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            font-size: 5rem;
+            color: blue;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0, 0, 255, 0.7), 0 0 20px rgba(0, 0, 255, 0.5);
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(0, 0, 255, 0.7), 0 0 20px rgba(0, 0, 255, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(0, 0, 255, 1), 0 0 30px rgba(0, 0, 255, 0.8);
+            }
+        }
+
+        small {
+            font-size: 1rem;
+            color: lightblue;
+            text-align: center;
+            display: block;
+        }
+
+        .topbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: lightblue;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .topbar a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+            font-size: 1.2rem;
+        }
+
+        .topbar a.disabled {
+            color: grey;
+            pointer-events: none;
+        }
+
+        .click-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 0, 255, 0.6);
+            pointer-events: none;
+            animation: expandFade 1s forwards;
+        }
+
+        @keyframes expandFade {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 150px;
+                height: 150px;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <a href="index.html">Home</a>
+        <a href="fl-test.html">Devkit</a>
+        <a href="about.html">About</a>
+        <a href="#" class="disabled">Unblocked V2X</a>
+    </div>
+
+    <div class="content">
+        <h1>Unblocked V2</h1>
+        <small>v2025.x</small>
+    </div>
+
+    <script>
+        document.addEventListener('click', function(e) {
+            let circle = document.createElement('div');
+            circle.classList.add('click-circle');
+            document.body.appendChild(circle);
+
+            circle.style.left = `${e.pageX - 75}px`;
+            circle.style.top = `${e.pageY - 75}px`;
+
+            setTimeout(() => {
+                circle.remove();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
