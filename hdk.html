@@ -5,66 +5,181 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unblocked V2X</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="/hdk.css">
+    <link rel="stylesheet" href="/main.css">
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: linear-gradient(45deg, #5A7AFF, #5E3B8A);
+            color: white;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #5A7AFF;
+            text-shadow: 0 0 10px rgba(90, 122, 255, 0.8);
+        }
+
+        header .logo {
+            height: 50px;
+            cursor: pointer;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-right: 5px;
+            outline: none;
+        }
+
+        .search-bar button {
+            background-color: #555;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #777;
+        }
+
+        /* Grid for games */
+        main {
+            padding: 20px;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .game-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 10px;
+            transition: transform 0.2s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-item img {
+            width: 100%;
+            height: auto;
+            max-width: 120px; /* Limit icon size */
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px;
+            text-align: center;
+            background-color: #333;
+            color: white;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Search Bar Position */
+        .search-bar {
+            width: 300px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+    </style>
+
     <script>
         function redirectToRandomSite() {
             const urls = ["https://unblockedv2.vercel.app/"];
             const randomIndex = Math.floor(Math.random() * urls.length);
             window.location.href = urls[randomIndex];
         }
+
+        // Function to filter games based on search input
+        function searchGames() {
+            const searchInput = document.querySelector('.search-bar input').value.toLowerCase();
+            const games = document.querySelectorAll('.game-item');
+
+            games.forEach(game => {
+                const gameTitle = game.querySelector('img').alt.toLowerCase();
+                if (gameTitle.includes(searchInput)) {
+                    game.style.display = 'block';
+                } else {
+                    game.style.display = 'none';
+                }
+            });
+        }
     </script>
 </head>
 <body>
     <header>
-        <nav>
-            <img src="images/icon.png" alt="logo" onclick="redirectToRandomSite()" class="logo">
-            <h1>Unblocked V2X</h1>
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-                <button><i class="fas fa-search"></i></button>
-            </div>
-        </nav>
+        <img src="images/icon.png" alt="logo" onclick="redirectToRandomSite()" class="logo">
+        <h1>Unblocked V2X</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Search..." oninput="searchGames()">
+            <button><i class="fas fa-search"></i></button>
+        </div>
     </header>
 
     <main>
         <section class="featured">
             <h2 class="section-title">Popular Games</h2>
             <div class="game-grid">
+                <!-- Featured Games -->
                 <a href="games/bob-the-robber-2/" class="game-item">
                     <img src="images/bob-the-robber-2.png" alt="Bob the Robber 2">
-                    <div class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
                 </a>
                 <a href="games/vex7/" class="game-item">
                     <img src="images/vex7.jpeg" alt="Vex 7">
-                    <div class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
                 </a>
                 <a href="games/vex6/" class="game-item">
                     <img src="images/vex6.jpeg" alt="Vex 6">
-                    <div class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
                 </a>
                 <a href="games/drive-mad/" class="game-item">
                     <img src="images/drive-mad.jpg" alt="Drive Mad">
-                    <div class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
                 </a>
                 <a href="games/moto-x3m/" class="game-item">
                     <img src="images/moto-x3m.jpg" alt="Moto X3M">
-                    <div class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
                 </a>
                 <a href="games/retro-bowl/" class="game-item">
                     <img src="images/retro-bowl.jpg" alt="Retro Bowl">
-                    <div class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
                 </a>
             </div>
         </section>
@@ -119,7 +234,7 @@
                     <img src="images/basketballstars.png" alt="Basketball Stars">
                 </a>
                 <a href="games/basketbrosio/" class="game-item">
-                    <img src="images/basketbros.png" alt="BasketBros.io">
+                    <img src="images/basketbros.png" alt="Basketbros.io">
                 </a>
                 <a href="games/2048/" class="game-item">
                     <img src="images/2048.png" alt="2048">
@@ -222,8 +337,9 @@
     </main>
 
     <footer>
-        <h2 style="color: white;">Things you see here are not final!</h2>
-        <h3 style="color: white;">v2025.x</h3>
+        <p>Unblocked V2X</p>
+        <h2 style=“color: white;”>Things you see here are not final!</h2>
+        <h3 style=“color: white;”>v2025.x</h3>
     </footer>
 </body>
 </html>
