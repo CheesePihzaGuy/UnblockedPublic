@@ -2,219 +2,228 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unblocked V2</title>
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
-    <link rel="stylesheet" href="/main.css">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            background-size: 400% 400%;
-            animation: gradientMove 10s ease infinite;
-            color: white;
-            overflow-x: hidden;
+    <title>Unblocked V2X</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="/hdk.css">
+    <script>
+        function redirectToRandomSite() {
+            const urls = ["https://unblockedv2.vercel.app/"];
+            const randomIndex = Math.floor(Math.random() * urls.length);
+            window.location.href = urls[randomIndex];
         }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.4);
-        }
-
-        nav img {
-            width: 50px;
-            cursor: pointer;
-        }
-
-        nav h1 {
-            margin: 0;
-            font-size: 2rem;
-            letter-spacing: 1px;
-        }
-
-        .featured {
-            padding: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-
-        .featured h1 {
-            width: 100%;
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .column, .row {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .column a, .row a {
-            position: relative;
-            width: 250px;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.4s;
-        }
-
-        .column a img, .row a img {
-            width: 100%;
-            border-radius: 15px;
-            transition: transform 0.4s ease;
-        }
-
-        .column a:hover img, .row a:hover img {
-            transform: scale(1.1);
-        }
-
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 2rem;
-            display: none;
-        }
-
-        a:hover .play-button {
-            display: block;
-        }
-
-        /* Search bar styling */
-        .search {
-            width: 100%;
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .search input {
-            width: 60%;
-            padding: 10px;
-            border: none;
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.2);
-            outline: none;
-            color: #fff;
-            font-size: 1.2rem;
-            transition: width 0.5s ease;
-        }
-
-        .search input:focus {
-            width: 80%;
-        }
-
-        .search button {
-            padding: 12px 18px;
-            border-radius: 50%;
-            border: none;
-            background-color: #fff;
-            color: #6a11cb;
-            margin-left: -40px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .search button:hover {
-            background-color: #2575fc;
-        }
-
-        .content {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .content a {
-            position: relative;
-            width: 150px;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .content a img {
-            width: 100%;
-            border-radius: 10px;
-            transition: transform 0.4s ease;
-        }
-
-        .content a:hover img {
-            transform: scale(1.05);
-        }
-
-        .content a:hover .play-button {
-            display: block;
-        }
-
-        .content h2 {
-            color: white;
-            text-align: center;
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <nav>
-        <img src="images/icon.png" alt="logo" onclick="redirectToRandomSite()">
-        <h1>Unblocked V2 Devkit [TestSite]</h1>
-    </nav>
+    <header>
+        <nav>
+            <img src="images/icon.png" alt="logo" onclick="redirectToRandomSite()" class="logo">
+            <h1>Unblocked V2X</h1>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </nav>
+    </header>
 
-    <div class="featured">
-        <h1>Popular:</h1>
-        <div class="column">
-            <a href="games/bob-the-robber-2/">
-                <img src="images/bob-the-robber-2.png" alt="Bob the Robber 2">
-                <div class="play-button">
-                    <i class="fa-solid fa-play"></i>
-                </div>
-            </a>
-            <a href="games/vex7/">
-                <img src="images/vex7.jpeg" alt="Vex 7">
-                <div class="play-button">
-                    <i class="fa-solid fa-play"></i>
-                </div>
-            </a>
-        </div>
-        <!-- Add more games here -->
-    </div>
+    <main>
+        <section class="featured">
+            <h2 class="section-title">Popular Games</h2>
+            <div class="game-grid">
+                <a href="games/bob-the-robber-2/" class="game-item">
+                    <img src="images/bob-the-robber-2.png" alt="Bob the Robber 2">
+                    <div class="play-button">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </a>
+                <a href="games/vex7/" class="game-item">
+                    <img src="images/vex7.jpeg" alt="Vex 7">
+                    <div class="play-button">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </a>
+                <a href="games/vex6/" class="game-item">
+                    <img src="images/vex6.jpeg" alt="Vex 6">
+                    <div class="play-button">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </a>
+                <a href="games/drive-mad/" class="game-item">
+                    <img src="images/drive-mad.jpg" alt="Drive Mad">
+                    <div class="play-button">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </a>
+                <a href="games/moto-x3m/" class="game-item">
+                    <img src="images/moto-x3m.jpg" alt="Moto X3M">
+                    <div class="play-button">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </a>
+                <a href="games/retro-bowl/" class="game-item">
+                    <img src="images/retro-bowl.jpg" alt="Retro Bowl">
+                    <div class="play-button">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </a>
+            </div>
+        </section>
 
-    <div class="content">
-        <div class="search">
-            <input type="text" placeholder="Search...">
-            <button><i class="fas fa-search"></i></button>
-        </div>
+        <section class="all-games">
+            <h2 class="section-title">All Games</h2>
+            <div class="game-grid">
+                <!-- All Games -->
+                <a href="games/bob-the-robber-2/" class="game-item">
+                    <img src="images/bob-the-robber-2.png" alt="Bob the Robber 2">
+                </a>
+                <a href="games/vex7/" class="game-item">
+                    <img src="images/vex7.jpeg" alt="Vex 7">
+                </a>
+                <a href="games/vex6/" class="game-item">
+                    <img src="images/vex6.jpeg" alt="Vex 6">
+                </a>
+                <a href="games/moto-x3m/" class="game-item">
+                    <img src="images/moto-x3m.jpg" alt="Moto X3M">
+                </a>
+                <a href="games/retro-bowl/" class="game-item">
+                    <img src="images/retro-bowl.jpg" alt="Retro Bowl">
+                </a>
+                <a href="games/drive-mad/" class="game-item">
+                    <img src="images/drive-mad.jpg" alt="Drive Mad">
+                </a>
+                <a href="games/slope/" class="game-item">
+                    <img src="images/slope.jpg" alt="Slope">
+                </a>
+                <a href="games/motox3m2/" class="game-item">
+                    <img src="images/motox3m2.jpg" alt="Moto X3M 2">
+                </a>
+                <a href="games/1v1lol/" class="game-item">
+                    <img src="images/1v1icon.png" alt="1v1 LOL">
+                </a>
+                <a href="games/a-dance-of-fire-and-ice/" class="game-item">
+                    <img src="images/adofai.png" alt="A Dance of Fire and Ice">
+                </a>
+                <a href="games/amongus/" class="game-item">
+                    <img src="images/auicon.png" alt="Among Us">
+                </a>
+                <a href="games/backrooms/" class="game-item">
+                    <img src="images/backrooms.png" alt="Backrooms">
+                </a>
+                <a href="games/badicecream2/" class="game-item">
+                    <img src="images/badice2.png" alt="Bad Ice Cream 2">
+                </a>
+                <a href="games/baldisbasics/" class="game-item">
+                    <img src="images/baldi.png" alt="Baldi's Basics">
+                </a>
+                <a href="games/basketballstars/" class="game-item">
+                    <img src="images/basketballstars.png" alt="Basketball Stars">
+                </a>
+                <a href="games/basketbrosio/" class="game-item">
+                    <img src="images/basketbros.png" alt="BasketBros.io">
+                </a>
+                <a href="games/2048/" class="game-item">
+                    <img src="images/2048.png" alt="2048">
+                </a>
+                <a href="games/bitlife/" class="game-item">
+                    <img src="images/bitlife.png" alt="Bitlife">
+                </a>
+                <a href="games/worldshardestgame/" class="game-item">
+                    <img src="images/worldhardestgame.png" alt="World's Hardest Game">
+                </a>
+                <a href="games/worldshardestgame2/" class="game-item">
+                    <img src="images/worldshardestgame2.png" alt="World's Hardest Game 2">
+                </a>
+                <a href="games/slope2/" class="game-item">
+                    <img src="images/slope21.png" alt="Slope 2">
+                </a>
+                <a href="games/sm64/" class="game-item">
+                    <img src="images/sm64.png" alt="Super Mario 64">
+                </a>
+                <a href="games/stickman-hook/" class="game-item">
+                    <img src="images/stickmanhook.png" alt="Stickman Hook">
+                </a>
+                <a href="games/minecraft-18/" class="game-item">
+                    <img src="images/minecraft.png" alt="Minecraft">
+                </a>
+                <a href="games/drift-boss/" class="game-item">
+                    <img src="images/driftboss.png" alt="Drift Boss">
+                </a>
+                <a href="games/core-ball/" class="game-item">
+                    <img src="images/coreball.png" alt="Core Ball">
+                </a>
+                <a href="games/wordle/" class="game-item">
+                    <img src="images/wordleicon.png" alt="Wordle">
+                </a>
+                <a href="games/subway-surfers/" class="game-item">
+                    <img src="images/subwaysurfers.png" alt="Subway Surfers">
+                </a>
+                <a href="games/bad-ice-cream/" class="game-item">
+                    <img src="images/badice1.png" alt="Bad Ice Cream">
+                </a>
+                <a href="games/bad-ice-cream-3/" class="game-item">
+                    <img src="images/badice3.png" alt="Bad Ice Cream 3">
+                </a>
+                <a href="games/cell-machine/" class="game-item">
+                    <img src="images/cellmachine.png" alt="Cell Machine">
+                </a>
+                <a href="games/cookie-clicker/" class="game-item">
+                    <img src="images/cookie.png" alt="Cookie Clicker">
+                </a>
+                <a href="games/getaway-shootout/" class="game-item">
+                    <img src="images/getaway.png" alt="Getaway Shootout">
+                </a>
+                <a href="games/paperio2/" class="game-item">
+                    <img src="images/paperio2.png" alt="Paper IO 2">
+                </a>
+                <a href="games/temple-run-2/" class="game-item">
+                    <img src="images/templerun2.png" alt="Temple Run 2">
+                </a>
+                <a href="games/tunnel-rush/" class="game-item">
+                    <img src="images/tunelrush.png" alt="Tunnel Rush">
+                </a>
+                <a href="games/drift-hunters/" class="game-item">
+                    <img src="images/drifthunters.png" alt="Drift Hunters">
+                </a>
+                <a href="games/ducklife4/" class="game-item">
+                    <img src="images/ducklife4.png" alt="Duck Life 4">
+                </a>
+                <a href="games/doom/" class="game-item">
+                    <img src="images/doom.png" alt="Doom">
+                </a>
+                <a href="games/fnaf2/" class="game-item">
+                    <img src="images/fnaf2.png" alt="Five Nights at Freddy's 2">
+                </a>
+                <a href="games/madalin-stunt-cars-2/" class="game-item">
+                    <img src="images/madalin-stunt-cars-2.png" alt="Madalin Stunt Cars 2">
+                </a>
+                <a href="games/madalin-stunt-cars-3/" class="game-item">
+                    <img src="images/Madalin-Stunt-Cars-3.png" alt="Madalin Stunt Cars 3">
+                </a>
+                <a href="games/krunker/" class="game-item">
+                    <img src="images/krunker.png" alt="Krunker">
+                </a>
+                <a href="games/chrome-dino/" class="game-item">
+                    <img src="images/dino.gif" alt="Chrome Dino">
+                </a>
+                <a href="games/csgo-clicker/" class="game-item">
+                    <img src="images/csgoclickerBG.png" alt="CSGO Clicker">
+                </a>
+                <a href="games/10-minutes-till-dawn/" class="game-item">
+                    <img src="images/10minstilldawn.png" alt="10 Minutes Till Dawn">
+                </a>
+                <a href="games/jetpack-joyride/" class="game-item">
+                    <img src="images/jetpackjoy.png" alt="Jetpack Joyride">
+                </a>
+                <a href="games/fridaynightfunkin/" class="game-item">
+                    <img src="images/fnf.png" alt="Friday Night Funkin">
+                </a>
+            </div>
+        </section>
+    </main>
 
-        <div id="games">
-            <a href="games/bob-the-robber-2/"><img src="images/bob-the-robber-2.png" alt="bob the robber 2"></a>
-            <a href="games/vex7/"><img src="images/vex7.jpeg" alt="vex 7"></a>
-            <a href="games/vex6/"><img src="images/vex6.jpeg" alt="vex 6"></a>
-            <a href="games/moto-x3m/"><img src="images/moto-x3m.jpg" alt="moto x3m"></a>
-            <a href="games/retro-bowl/"><img src="images/retro-bowl.jpg" alt="retrobowl"></a>
-            <!-- Add more games dynamically -->
-        </div>
-    </div>
-
-    <h2>Things you see here are not final!</h2>
-    <h3>v2025.x</h3>
-
-    <script src="script.js"></script>
+    <footer>
+        <h2 style="color: white;">Things you see here are not final!</h2>
+        <h3 style="color: white;">v2025.x</h3>
+    </footer>
 </body>
 </html>
