@@ -16,19 +16,32 @@
             align-items: center;
             background-color: gray;
             font-family: 'Inter', sans-serif;
+            overflow: hidden;
         }
 
+        /* General styles for popups */
         .popup {
             width: 400px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             padding: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            z-index: 2;
+            opacity: 0;
+            animation: popupAnimation 0.5s ease forwards;
+        }
+
+        @keyframes popupAnimation {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         }
 
         .popup h2 {
@@ -79,6 +92,46 @@
             cursor: pointer;
         }
 
+        .sdk-bypass-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: gray;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .sdk-bypass-btn:hover {
+            background-color: #505050;
+        }
+
+        .sdk-bypass-active {
+            background-color: green;
+        }
+
+        .sdk-bypass-disabled {
+            background-color: red;
+        }
+
+        /* Overlay styles */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Shake animation */
         .shake {
             animation: shake 0.5s ease-out 1;
         }
@@ -90,18 +143,57 @@
             75% { transform: translateX(-10px); }
             100% { transform: translateX(0); }
         }
+
+        /* Styles for SDK Bypass Popup */
+        .bypass-popup {
+            width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            opacity: 0;
+            animation: popupAnimation 0.5s ease forwards;
+        }
     </style>
 </head>
 <body>
 
-<div class="popup">
+<!-- Main popup -->
+<div class="popup" id="mainPopup">
     <div class="close-btn" onclick="window.location.href = 'https://www.google.com/';"></div>
     <h2>Beta Code</h2>
     <input type="text" class="beta-code-input" id="betaCode" placeholder="Enter Beta Code...">
     <button class="submit-btn" onclick="validateCode()">Submit</button>
+    <button class="sdk-bypass-btn" onclick="showSdkBypass()">SDK Bypass</button>
 </div>
 
+<!-- SDK Bypass code popup -->
+<div class="popup" id="sdkPopup">
+    <h2>SDK Bypass</h2>
+    <input type="text" class="beta-code-input" id="sdkCode" placeholder="Enter Bypass Code...">
+    <button class="submit-btn" onclick="validateSdkCode()">Submit</button>
+</div>
+
+<!-- SDK Bypass success popup -->
+<div class="bypass-popup" id="bypassSuccessPopup">
+    <h2>SDK Bypass</h2>
+    <button class="sdk-bypass-btn" id="bypassButton">SDK Bypass</button>
+</div>
+
+<!-- Overlay for Disabled state -->
+<div class="overlay" id="overlay"></div>
+
 <script>
+    // Main code validation
     function validateCode() {
         const inputField = document.getElementById('betaCode');
         const correctCode = 'QvfSF63';
@@ -116,6 +208,57 @@
                 inputField.style.borderColor = 'gray';
             }, 500);
         }
+    }
+
+    // Show SDK Bypass popup
+    function showSdkBypass() {
+        document.getElementById('sdkPopup').style.opacity = '1';
+        document.getElementById('sdkPopup').style.zIndex = '2';
+    }
+
+    // SDK Bypass code validation
+    function validateSdkCode() {
+        const inputField = document.getElementById('sdkCode');
+        const correctSdkCode = 'XT599@tx';
+
+        if (inputField.value === correctSdkCode) {
+            document.getElementById('sdkPopup').style.display = 'none';
+            document.getElementById('bypassSuccessPopup').style.opacity = '1';
+            document.getElementById('bypassSuccessPopup').style.zIndex = '2';
+            startBypassCountdown();
+        } else {
+            inputField.classList.add('shake');
+            inputField.style.borderColor = 'red';
+            setTimeout(() => {
+                inputField.classList.remove('shake');
+                inputField.style.borderColor = 'gray';
+            }, 500);
+        }
+    }
+
+    // Countdown for SDK Bypass button
+    function startBypassCountdown() {
+        let timeLeft = 10;
+        const bypassButton = document.getElementById('bypassButton');
+        const overlay = document.getElementById('overlay');
+
+        const interval = setInterval(() => {
+            if (timeLeft > 0) {
+                bypassButton.textContent = `SDK Bypass (${timeLeft}s)`;
+                timeLeft--;
+            } else {
+                clearInterval(interval);
+                bypassButton.textContent = 'Disabled';
+                bypassButton.classList.remove('sdk-bypass-active');
+                bypassButton.classList.add('sdk-bypass-disabled');
+                overlay.classList.add('active');
+            }
+        }, 1000);
+
+        bypassButton.onclick = function() {
+            clearInterval(interval);
+            window.location.href = '2025.html';
+        };
     }
 </script>
 
