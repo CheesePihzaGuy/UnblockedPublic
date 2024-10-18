@@ -161,6 +161,18 @@
         .error-popup button:hover {
             background-color: #444;
         }
+        iframe {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            height: 60%;
+            border: 2px solid gray;
+            background-color: white;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -193,6 +205,9 @@
         <div class="error-message" id="errorMessage">Error Message</div>
         <button id="closeErrorBtn">Close</button>
     </div>
+
+    <!-- Iframe (hidden initially) -->
+    <iframe id="iframe" src="about:blank"></iframe>
 
     <script>
         // Show the initial popup
@@ -239,10 +254,20 @@
                     setTimeout(() => {
                         document.getElementById('blackout').style.display = 'flex';
                         document.getElementById('blackout').innerHTML = '<h1>NodeJS bypass was automatically disabled...</h1>';
+
+                        // Show iframe with message after 7 seconds
+                        setTimeout(() => {
+                            const iframe = document.getElementById('iframe');
+                            iframe.style.display = 'block';
+                            iframe.srcdoc = '<h1 style="color:black; text-align:center; padding:50px;">NodeJS bypass was automatically disabled...</h1>';
+                        }, 7000);
+
+                        // Reset status and hide blackout and iframe after 7 seconds
                         setTimeout(() => {
                             document.getElementById('status').textContent = '✅ - OPERATIONAL';
                             document.getElementById('blackout').style.display = 'none';
-                        }, 7000);
+                            document.getElementById('iframe').style.display = 'none';
+                        }, 14000);  // 7 seconds after iframe appears
                     }, 7000);
                 }
             });
