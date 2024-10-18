@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unblocked V2 Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: gray;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        #popup {
+            display: none;
+            background: white;
+            border: 1px solid gray;
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+            animation: popupIn 0.5s ease-in-out;
+        }
+        #popup h1 {
+            margin-bottom: 10px;
+            color: black;
+        }
+        #popup button {
+            padding: 10px;
+            background-color: gray;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #popup button:hover {
+            background-color: #444;
+        }
+        #window {
+            display: none;
+            width: 500px;
+            height: 300px;
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+            position: relative;
+            animation: windowIn 0.5s ease-in-out;
+        }
+        #window .title-bar {
+            background-color: gray;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        #window .content {
+            padding: 20px;
+            font-size: 16px;
+        }
+        .status {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .status.success {
+            color: green;
+        }
+        .status.warning {
+            color: orange;
+        }
+        .status.error {
+            color: red;
+        }
+        #window button {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: gray;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #window button:hover {
+            background-color: #444;
+        }
+        #window input {
+            padding: 5px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid gray;
+            margin-top: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @keyframes popupIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes windowIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        #blackout {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 9999;
+            opacity: 0.9;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+        }
+        #blackout h1 {
+            text-align: center;
+        }
+        .error-popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            color: black;
+            border: 1px solid gray;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+            z-index: 10000;
+            display: none;
+        }
+        .error-popup .error-message {
+            margin-bottom: 10px;
+        }
+        .error-popup button {
+            padding: 5px 10px;
+            background-color: gray;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .error-popup button:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Popup -->
+    <div id="popup">
+        <h1>Verify</h1>
+        <button id="verifyBtn">Verify</button>
+    </div>
+
+    <!-- UnblockedV2 Development Manager Window -->
+    <div id="window">
+        <div class="title-bar">
+            UnblockedV2 Development Manager
+        </div>
+        <div class="content">
+            <div class="status success" id="status">✅ - OPERATIONAL</div>
+            <button id="activateMaintenanceBtn">Activate Maintenance</button>
+            <button id="enableHyperVBtn">Enable HyperV</button>
+            <button id="disableNodeJSBtn">Disable NodeJS</button>
+            <input type="text" id="bypassCodeInput" placeholder="Enter Bypass Code..." style="display: none;">
+        </div>
+    </div>
+
+    <!-- Blackout Screen -->
+    <div id="blackout"></div>
+
+    <!-- Custom Error Popup -->
+    <div class="error-popup" id="errorPopup">
+        <div class="error-message" id="errorMessage">Error Message</div>
+        <button id="closeErrorBtn">Close</button>
+    </div>
+
+    <script>
+        // Show the initial popup
+        window.onload = () => {
+            document.getElementById('popup').style.display = 'block';
+        };
+
+        document.getElementById('verifyBtn').addEventListener('click', () => {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('window').style.display = 'block';
+        });
+
+        document.getElementById('activateMaintenanceBtn').addEventListener('click', () => {
+            const code = prompt('Enter Bypass Code...');
+            if (code === 'SG2025') {
+                document.body.style.backgroundColor = 'black';
+                document.body.innerHTML = '<h1>Error 5893 - Could not reach directed IP</h1>';
+                setTimeout(() => {
+                    document.body.innerHTML += '<p>com.comcast.dns - cannot reach specified dns: 8.8.8.8</p>';
+                }, 5000);
+                setTimeout(() => {
+                    alert("Please refresh the page to continue.");
+                }, 12000);
+            }
+        });
+
+        document.getElementById('enableHyperVBtn').addEventListener('click', () => {
+            showErrorPopup("Engine A9 does not support HyperV!");
+            const btn = document.getElementById('enableHyperVBtn');
+            btn.style.backgroundColor = 'red';
+            setTimeout(() => {
+                btn.style.backgroundColor = 'gray';
+            }, 1000);
+        });
+
+        document.getElementById('disableNodeJSBtn').addEventListener('click', () => {
+            const bypassCodeInput = document.getElementById('bypassCodeInput');
+            bypassCodeInput.style.display = 'block';
+            bypassCodeInput.focus();
+            bypassCodeInput.addEventListener('input', () => {
+                const code = bypassCodeInput.value;
+                if (code === 'QvsfX63') {
+                    document.getElementById('status').textContent = '🟠 - NodeJS Disabled';
+                    setTimeout(() => {
+                        document.getElementById('blackout').style.display = 'flex';
+                        document.getElementById('blackout').innerHTML = '<h1>NodeJS bypass was automatically disabled...</h1>';
+                        setTimeout(() => {
+                            document.getElementById('status').textContent = '✅ - OPERATIONAL';
+                            document.getElementById('blackout').style.display = 'none';
+                        }, 7000);
+                    }, 7000);
+                }
+            });
+        });
+
+        // Function to show a custom error popup
+        function showErrorPopup(message) {
+            const popup = document.getElementById('errorPopup');
+            const messageElement = document.getElementById('errorMessage');
+            messageElement.textContent = message;
+            popup.style.display = 'block';
+
+            document.getElementById('closeErrorBtn').addEventListener('click', () => {
+                popup.style.display = 'none';
+            });
+        }
+    </script>
+
+</body>
+</html>
